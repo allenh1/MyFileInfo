@@ -2,15 +2,18 @@
 TextWindow::TextWindow()
 {
     openAction = new QAction(tr("&Open"), this);
+    openDirectoryAction = new QAction(tr("&Open Folder"), this);
     saveAction = new QAction(tr("&Save"), this);
     exitAction = new QAction(tr("E&xit"), this);
 
     connect(openAction, SIGNAL(triggered()), this, SLOT(getSize()));
+    connect(openDirectoryAction, SIGNAL(triggered()), this, SLOT(getDirectory()));
     connect(saveAction, SIGNAL(triggered()), this, SLOT(save()));
     connect(exitAction, SIGNAL(triggered()), this, SLOT(quit()));
 
     fileMenu = menuBar()->addMenu(tr("&File"));
     fileMenu->addAction(openAction);
+    fileMenu->addAction(openDirectoryAction);
     fileMenu->addAction(saveAction);
     fileMenu->addSeparator();
     fileMenu->addAction(exitAction);
@@ -152,6 +155,29 @@ void TextWindow::sortFiles()
 
     totalSize = total;
 }//sort the files by size.
+
+void TextWindow::getDirectory()
+{
+    QString dirName = QFileDialog::getExistingDirectory(this, tr("Open Dir"));
+    QString output;
+    QDir myDir(dirName);
+    QStringList list = myDir.entryList(QDir::Files);
+
+    for (int x = 0; x < list.size(); x++)
+    {
+        QString fileName = dirName + "/" + list.at(x);
+        QFile file(fileName);
+
+        int int_size = file.size();
+        QString FileName = fileName;
+        FileInfo toPush(FileName, int_size);
+        fileList.push_back(toPush);
+        file.close();
+    }//end for x.
+
+    output = getList();
+    textEdit->setText(output);
+}//add an entire directory.
 
 void TextWindow::getSize()
 {

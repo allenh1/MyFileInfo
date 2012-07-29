@@ -16,6 +16,7 @@ private slots:
     void save();
     void quit();
     void getSize();
+    void getDirectory();
     QString getList();
 
 private:
@@ -23,6 +24,7 @@ private:
 
     QAction *openAction;
     QAction *saveAction;
+    QAction *openDirectoryAction;
     QAction *exitAction;
     void sortFiles();
 
