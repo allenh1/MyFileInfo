@@ -80,6 +80,7 @@ QString TextWindow::getList()
 {
     sortFiles();
     QString output;
+    QString FileSize;
 
     for (int x = 0; x < fileList.size(); x++)
     {
@@ -89,12 +90,33 @@ QString TextWindow::getList()
         output += "\n";
     }//add all files in the list.
 
+    int divisions = 0;
+
+    while (totalSize > 1024)
+    { totalSize /= 1024.0; divisions++; }
+
+    FileSize.setNum(totalSize);
+
+    if (divisions == 0)
+        FileSize += " Bytes";
+    else if (divisions == 1)
+        FileSize += " KB";
+    else if (divisions == 2)
+        FileSize += " MB";
+    else if (divisions == 3)
+        FileSize += " GB";
+    else if (divisions == 4)
+        FileSize += " TB";
+
+    output += "\n\nTotal: ";
+    output += FileSize;
     return output;
 }//returns a string for file output.
 
 void TextWindow::sortFiles()
 {
     QList<FileInfo> sortedList;
+    int total = 0;
 
     while (fileList.size() > 0)
     {
@@ -113,7 +135,12 @@ void TextWindow::sortFiles()
 
     fileList.clear();
     for (int y = 0; y < sortedList.size(); y++)
+    {
         fileList.push_back(sortedList.at(y));
+        total += sortedList.at(y).getSize;
+    }//end for x.
+
+    totalSize = total;
 }//sort the files by size.
 
 void TextWindow::getSize()
