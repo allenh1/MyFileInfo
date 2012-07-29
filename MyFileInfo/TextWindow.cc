@@ -24,7 +24,7 @@ TextWindow::TextWindow()
 void TextWindow::quit()
 {
     QMessageBox messageBox;
-    messageBox.setWindowTitle(tr("Notepad"));
+    messageBox.setWindowTitle(tr("MyFileInfo"));
     messageBox.setText(tr("Do you really want to quit?"));
     messageBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
     messageBox.setDefaultButton(QMessageBox::No);
