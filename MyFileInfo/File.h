@@ -12,7 +12,9 @@ public:
     FileInfo(QString name, int _size);
 
     void toString();
+
     QString getString;
+    int getSize;
 private:
     int size;
     QString filename;

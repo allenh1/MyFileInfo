@@ -24,6 +24,7 @@ private:
     QAction *openAction;
     QAction *saveAction;
     QAction *exitAction;
+    void sortFiles();
 
     QMenu *fileMenu;
 

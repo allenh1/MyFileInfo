@@ -78,6 +78,7 @@ void TextWindow::save()
 
 QString TextWindow::getList()
 {
+    sortFiles();
     QString output;
 
     for (int x = 0; x < fileList.size(); x++)
@@ -90,6 +91,30 @@ QString TextWindow::getList()
 
     return output;
 }//returns a string for file output.
+
+void TextWindow::sortFiles()
+{
+    QList<FileInfo> sortedList;
+
+    while (fileList.size() > 0)
+    {
+        int max = 0; int maxIndex = 0;
+
+        for (int x = 0; x < fileList.size(); x++)
+        {
+            int xSize = fileList.at(x).getSize;
+            if (xSize > max)
+            { max = fileList.at(x).getSize; maxIndex = x; }
+        }//end for x.
+
+        sortedList.push_back(fileList.at(maxIndex));
+        fileList.removeAt(maxIndex);
+    }//void sorts the file list.
+
+    fileList.clear();
+    for (int y = 0; y < sortedList.size(); y++)
+        fileList.push_back(sortedList.at(y));
+}//sort the files by size.
 
 void TextWindow::getSize()
 {

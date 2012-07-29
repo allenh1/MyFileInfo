@@ -5,6 +5,8 @@ FileInfo::FileInfo(QString name, int _size)
     filename = name;
     size = _size;
     toString();
+
+    getSize = size;
 }//construct a file object
 
 void FileInfo::toString()
