@@ -7,7 +7,7 @@ TextWindow::TextWindow()
 
     connect(openAction, SIGNAL(triggered()), this, SLOT(getSize()));
     connect(saveAction, SIGNAL(triggered()), this, SLOT(save()));
-    connect(exitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
+    connect(exitAction, SIGNAL(triggered()), this, SLOT(quit()));
 
     fileMenu = menuBar()->addMenu(tr("&File"));
     fileMenu->addAction(openAction);
@@ -18,13 +18,13 @@ TextWindow::TextWindow()
     textEdit = new QTextEdit;
     setCentralWidget(textEdit);
 
-    setWindowTitle(tr("Notepad"));
+    setWindowTitle(tr("MyFileInfo"));
 }
 
 void TextWindow::quit()
 {
     QMessageBox messageBox;
-    messageBox.setWindowTitle(tr("MyFileInfo"));
+    messageBox.setWindowTitle(tr("Exit"));
     messageBox.setText(tr("Do you really want to quit?"));
     messageBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
     messageBox.setDefaultButton(QMessageBox::No);
