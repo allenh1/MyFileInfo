@@ -134,6 +134,16 @@ void TextWindow::sortFiles()
     }//void sorts the file list.
 
     fileList.clear();
+
+    for (int z = 1; z < sortedList.size(); z++)
+    {
+        FileInfo toCompare = sortedList.at(z - 1);
+        FileInfo toCompareTo = sortedList.at(z);
+
+        if (toCompareTo.compareTo(toCompare))
+        { sortedList.removeAt(z); z--; }
+    }//remove duplicates.
+
     for (int y = 0; y < sortedList.size(); y++)
     {
         fileList.push_back(sortedList.at(y));

@@ -13,6 +13,8 @@ public:
 
     void toString();
 
+    bool compareTo(FileInfo other);
+
     QString getString;
     int getSize;
 private:

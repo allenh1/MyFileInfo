@@ -9,6 +9,9 @@ FileInfo::FileInfo(QString name, int _size)
     getSize = size;
 }//construct a file object
 
+bool FileInfo::compareTo(FileInfo other)
+{ return other.size == this->size && other.filename == this->filename; }
+
 void FileInfo::toString()
 {
     QString FileSize;
