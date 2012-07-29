@@ -27,6 +27,7 @@ private:
     QAction *openDirectoryAction;
     QAction *exitAction;
     void sortFiles();
+    void getFiles(QString dirName);
 
     double totalSize;
 

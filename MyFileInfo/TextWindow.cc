@@ -156,13 +156,10 @@ void TextWindow::sortFiles()
     totalSize = total;
 }//sort the files by size.
 
-void TextWindow::getDirectory()
+void TextWindow::getFiles(QString dirName)
 {
-    QString dirName = QFileDialog::getExistingDirectory(this, tr("Open Dir"));
-    QString output;
-    QDir myDir(dirName);
-    QStringList list = myDir.entryList(QDir::Files);
-
+    QDir currentDir(dirName);
+    QStringList list = currentDir.entryList(QDir::Files);
     for (int x = 0; x < list.size(); x++)
     {
         QString fileName = dirName + "/" + list.at(x);
@@ -173,6 +170,22 @@ void TextWindow::getDirectory()
         FileInfo toPush(FileName, int_size);
         fileList.push_back(toPush);
         file.close();
+    }//end for x.
+}//add all files from a directory to the list.
+
+void TextWindow::getDirectory()
+{
+    QString dirName = QFileDialog::getExistingDirectory(this, tr("Open Dir"));
+    QString output;
+    QDir myDir(dirName);
+    QStringList list = myDir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
+
+    getFiles(dirName);
+
+    for (int x = 0; x < list.size(); x++)
+    {
+        QString fileName = dirName + "/" + list.at(x);
+        getFiles(fileName);
     }//end for x.
 
     output = getList();
