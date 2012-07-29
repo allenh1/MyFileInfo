@@ -160,6 +160,18 @@ void TextWindow::getFiles(QString dirName)
 {
     QDir currentDir(dirName);
     QStringList list = currentDir.entryList(QDir::Files);
+    QStringList list2 = currentDir.entryList(QDir::NoDotAndDotDot);
+
+    for (int y = 0; y < list2.size(); y++)
+    {
+        QString fileName;
+        if (dirName != "/")
+            fileName = dirName + "/" + list2.at(y);
+        else
+            fileName = "/" + list2.at(y);
+        getFiles(fileName);
+    }//recursive call to getFiles.
+
     for (int x = 0; x < list.size(); x++)
     {
         QString fileName = dirName + "/" + list.at(x);
@@ -184,7 +196,11 @@ void TextWindow::getDirectory()
 
     for (int x = 0; x < list.size(); x++)
     {
-        QString fileName = dirName + "/" + list.at(x);
+        QString fileName;
+        if (dirName != "/")
+            fileName = dirName + "/" + list.at(x);
+        else
+            fileName = "/" + list.at(x);
         getFiles(fileName);
     }//end for x.
 
