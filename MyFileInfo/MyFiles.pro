@@ -1,6 +1,8 @@
 #QMake file.
 SOURCES += main.cc \
-    TextWindow.cc
+    TextWindow.cc \
+    File.cc
 
 HEADERS += \
-    TextWindow.h
+    TextWindow.h \
+    File.h
