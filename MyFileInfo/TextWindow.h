@@ -26,7 +26,7 @@ private:
     QAction *exitAction;
     void sortFiles();
 
-    int totalSize;
+    double totalSize;
 
     QMenu *fileMenu;
 

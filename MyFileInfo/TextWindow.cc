@@ -116,7 +116,7 @@ QString TextWindow::getList()
 void TextWindow::sortFiles()
 {
     QList<FileInfo> sortedList;
-    int total = 0;
+    double total = 0;
 
     while (fileList.size() > 0)
     {
