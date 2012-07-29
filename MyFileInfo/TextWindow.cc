@@ -1,5 +1,4 @@
 #include "TextWindow.h"
-
 TextWindow::TextWindow()
 {
     openAction = new QAction(tr("&Open"), this);
@@ -77,6 +76,21 @@ void TextWindow::save()
     }//end if
 }//void for saving the file
 
+QString TextWindow::getList()
+{
+    QString output;
+
+    for (int x = 0; x < fileList.size(); x++)
+    {
+        QString theString = fileList.at(x).getString;
+
+        output += theString;
+        output += "\n";
+    }//add all files in the list.
+
+    return output;
+}//returns a string for file output.
+
 void TextWindow::getSize()
 {
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "", tr("All Files (*)"));
@@ -90,36 +104,15 @@ void TextWindow::getSize()
             QMessageBox::critical(this, tr("Error"), tr("Could not open file"));
             return;
         }//end if
+        int int_size = file.size();
+        QString FileName = fileName;
+        FileInfo toPush(FileName, int_size);
 
-        QString stream;
-        stream = textEdit->toPlainText();
-        QString FileInfo;
-        QString FileSize;
-        double file_size = file.size(); //raw size in bytes
-        int divisions = 0;
+        fileList.push_back(toPush);
+        QString output;
+        output = getList();
 
-        while (file_size > 1024)
-        { file_size /= 1024.0; divisions++; }
-
-        FileSize.setNum(file_size);
-
-        if (divisions == 0)
-            FileSize += " Bytes";
-        else if (divisions == 1)
-            FileSize += " KB";
-        else if (divisions == 2)
-            FileSize += " MB";
-        else if (divisions == 3)
-            FileSize += " GB";
-        else if (divisions == 4)
-            FileSize += " TB";
-
-        if (stream.size() > 1)
-            FileInfo = stream + "\n" + fileName + ": " + FileSize;
-        else
-            FileInfo = stream + fileName + ": " + FileSize;
-
-        textEdit->setText(FileInfo);
+        textEdit->setText(output);
         file.close();
     }//end if
 }//open file dialog

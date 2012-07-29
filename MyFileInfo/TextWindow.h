@@ -1,6 +1,8 @@
 #ifndef TEXTWINDOW_H
 #define TEXTWINDOW_H
 #include <QtGui>
+#include "File.h"
+#include <QList>
 
 class TextWindow : public QMainWindow
 {
@@ -14,6 +16,7 @@ private slots:
     void save();
     void quit();
     void getSize();
+    QString getList();
 
 private:
     QTextEdit *textEdit;
@@ -25,6 +28,7 @@ private:
     QMenu *fileMenu;
 
     QString currentFile;
+    QList<FileInfo> fileList;
 };
 
 #endif // TEXTWINDOW_H
