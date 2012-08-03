@@ -3,6 +3,7 @@
 #include <QtGui>
 #include "File.h"
 #include <QList>
+#include <QIcon>
 
 class TextWindow : public QMainWindow
 {
@@ -26,8 +27,11 @@ private:
     QAction *saveAction;
     QAction *openDirectoryAction;
     QAction *exitAction;
+    QIcon *myIcon;
+
     void sortFiles();
     void getFiles(QString dirName);
+    void addFile(FileInfo file);
 
     double totalSize;
 

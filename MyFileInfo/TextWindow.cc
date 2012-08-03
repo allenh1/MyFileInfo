@@ -18,6 +18,8 @@ TextWindow::TextWindow()
     fileMenu->addSeparator();
     fileMenu->addAction(exitAction);
 
+    setWindowIcon(QIcon("hunternotepadurf.bmp"));
+
     textEdit = new QTextEdit;
     setCentralWidget(textEdit);
 
@@ -111,7 +113,12 @@ QString TextWindow::getList()
     else if (divisions == 4)
         FileSize += " TB";
 
-    output += "\n\nTotal: ";
+    QString numberOfFiles;
+    numberOfFiles.setNum(fileList.size());
+
+    output += "\nNumber of Files: ";
+    output += numberOfFiles;
+    output += "\nTotal: ";
     output += FileSize;
     return output;
 }//returns a string for file output.
@@ -156,6 +163,25 @@ void TextWindow::sortFiles()
     totalSize = total;
 }//sort the files by size.
 
+void TextWindow::addFile(FileInfo file)
+{
+    bool madeInsert = false;
+
+    for (int x = 0; x < fileList.size(); x++)
+    {
+        int xSize = fileList.at(x).getSize;
+        if (xSize > file.getSize)
+        {
+            fileList.insert(x, file);
+            madeInsert = true;
+            break;
+        }//end if
+    }//end for x.
+
+    if (!madeInsert)
+        fileList.push_back(file);
+}//add a file to the sorted list
+
 void TextWindow::getFiles(QString dirName)
 {
     QDir currentDir(dirName);
@@ -180,7 +206,7 @@ void TextWindow::getFiles(QString dirName)
         int int_size = file.size();
         QString FileName = fileName;
         FileInfo toPush(FileName, int_size);
-        fileList.push_back(toPush);
+        addFile(toPush);
         file.close();
     }//end for x.
 }//add all files from a directory to the list.
