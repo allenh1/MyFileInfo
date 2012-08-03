@@ -18,7 +18,7 @@ TextWindow::TextWindow()
     fileMenu->addSeparator();
     fileMenu->addAction(exitAction);
 
-    setWindowIcon(QIcon("icon.xmp"));
+    setWindowIcon(QIcon("icon.xpm"));
 
     textEdit = new QTextEdit;
     setCentralWidget(textEdit);
