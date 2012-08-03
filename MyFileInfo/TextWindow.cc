@@ -18,7 +18,7 @@ TextWindow::TextWindow()
     fileMenu->addSeparator();
     fileMenu->addAction(exitAction);
 
-    setWindowIcon(QIcon("hunternotepadurf.bmp"));
+    setWindowIcon(QIcon("icon.xmp"));
 
     textEdit = new QTextEdit;
     setCentralWidget(textEdit);
