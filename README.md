@@ -22,9 +22,14 @@ To do:
 
 Allow the ability to add an entire directory at once. 
 
-Verify multiplatform support, create installers for Ubuntu (.deb), Windows (.exe) and Mac OSX (.dmg). 
+Verify multiplatform support, create installers for Ubuntu (.deb) and Mac OSX (.dmg). 
 
 Supported Operating Systems: 
 ============================
 
-The beauty of building with Qt is that it is not platform dependent. Although this software was written for Linux and tested on Ubuntu, it should work on Mac OSX and Windows. 
+This software has been tested on Microsoft Windows 7 and Ubuntu 12.04 LTS; however, the software should compile on any platform with Qt4 and a C++ compiler. There is a Windows installer located in the directory "Windows". Download BOTH the setup.exe and MyFilesInstall.msi. Ignore the redistribution stuff... I didn't write that. I will not punish you for redistributing this FREE software. Feel free to. In fact, I encourage it. 
+
+Bug Reports:
+============
+
+If you should run into troubles, or you have some feature requests, email me here <hunter.allen@vanderbilt.edu>.
