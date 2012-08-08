@@ -12,15 +12,16 @@ class TextWindow : public QMainWindow
 public:
     TextWindow();
 
-private slots:
-    void open();
-    void save();
-    void quit();
-    void getSize();
-    void getDirectory();
-    QString getList();
-
 private:
+
+    ///Q_SLOTS GO HERE
+    Q_SLOT void open(); //signal = Q_SIGNAL; emit = Q_EMIT; foreach= Q_FOREACH   USE Q MACROS!
+    Q_SLOT void save();
+    Q_SLOT void quit();
+    Q_SLOT void getSize();
+    Q_SLOT void getDirectory();
+    Q_SLOT QString getList();
+
     QTextEdit *textEdit;
 
     QAction *openAction;

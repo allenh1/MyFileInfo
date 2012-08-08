@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by Qt Creator 2.4.1, 2012-08-03T14:10:06. -->
+<!-- Written by Qt Creator 2.4.1, 2012-08-08T09:56:37. -->
 <qtcreator>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -96,7 +96,9 @@
     </valuemap>
     <value type="int" key="ProjectExplorer.BuildConfiguration.BuildStepListCount">2</value>
     <value type="bool" key="ProjectExplorer.BuildConfiguration.ClearSystemEnvironment">false</value>
-    <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.UserEnvironmentChanges"/>
+    <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.UserEnvironmentChanges">
+     <value type="QString">CMAKE_PREFIX_PATH=/opt/ros/fuerte/share/catkin/cmake/Modules:/opt/ros/fuerte:</value>
+    </valuelist>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Qt 4.8.1 (System) Release</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4BuildConfiguration</value>
