@@ -141,38 +141,27 @@ void MainWindow::sortFiles()
     QList<FileInfo> sortedList;
     double total = 0;
 
-    while (fileList.size() > 0)
+    qSort(fileList.end(), fileList.begin());
+
+    for (int z = 1; z < fileList.size(); z++)
     {
-        int max = 0; int maxIndex = 0;
-
-        for (int x = 0; x < fileList.size(); x++)
-        {
-            int xSize = fileList.at(x).getSize;
-            if (xSize > max)
-            { max = fileList.at(x).getSize; maxIndex = x; }
-        }//end for x.
-
-        sortedList.push_back(fileList.at(maxIndex));
-        fileList.removeAt(maxIndex);
-    }//void sorts the file list.
-
-    fileList.clear();
-
-    for (int z = 1; z < sortedList.size(); z++)
-    {
-        FileInfo toCompare = sortedList.at(z - 1);
-        FileInfo toCompareTo = sortedList.at(z);
+        FileInfo toCompare = fileList.at(z - 1);
+        FileInfo toCompareTo = fileList.at(z);
 
         if (toCompareTo.compareTo(toCompare))
-        { sortedList.removeAt(z); z--; }
+        { fileList.removeAt(z); z--; }
     }//remove duplicates.
 
-    for (int y = 0; y < sortedList.size(); y++)
+    for (int y = 0; y < fileList.size(); y++)
     {
-        fileList.push_back(sortedList.at(y));
-        total += sortedList.at(y).getSize;
+        total += fileList.at(y).getSize;
     }//end for x.
 
+    sortedList = fileList;
+    fileList.clear();
+
+    for (int z = sortedList.size() -1; z >= 0; z--)
+        fileList.push_back(sortedList.at(z));
     totalSize = total;
 }//sort the files by size.
 

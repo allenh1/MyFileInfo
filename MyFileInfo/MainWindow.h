@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 #include <QtGui/QMainWindow>
 #include <QTimer>
+#include <QtAlgorithms>
 #include <QFileDialog>
 #include <QFile>
 #include <QMessageBox>
