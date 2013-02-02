@@ -1,4 +1,7 @@
 #QMake file.
+
+QT += gui core widgets
+
 SOURCES += main.cc \
     TextWindow.cc \
     File.cc \

@@ -1,6 +1,7 @@
 #ifndef TEXTWINDOW_H
 #define TEXTWINDOW_H
 #include <QtGui>
+#include <QtWidgets>
 #include "File.h"
 #include <QList>
 #include <QIcon>
