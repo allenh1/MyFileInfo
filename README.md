@@ -3,6 +3,11 @@ MyFileInfo:
 
 This program was written as an open source solution for filesystem information. The source is C++ and Qt4. This program reads all the files the user selects and sorts them in the text display. The display sorts automatically in a standard file list. This is a text file, which the user can save with the "save" option in the menue. From there, the user can simply print it out, load it elswhere, or whatever you do with a list of files and their respective sizes. 
 
+Donations:
+==========
+
+This is free software, but I would much appreciate some small donation if you find it useful. I also appreciate feature requests, 
+so feel free to [email](hunter.allen@vanderbilt.edu) me at any occassion.
 Dependencies:
 =============
 
