@@ -45,7 +45,9 @@ That's it.
 To do: 
 ======
 
-Create an installer for Ubuntu (.deb)
+* Create an installer for Ubuntu (.deb)
+* Allow for mulitple kinds of sorts
+* When double clicks occur, open the folder using a system call. 
 
 Supported Operating Systems: 
 ============================
