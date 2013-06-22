@@ -3,6 +3,15 @@ MyFileInfo:
 
 This program was written as an open source solution for filesystem information. The source is C++ and Qt4. This program reads all the files the user selects and sorts them in the text display. The display sorts automatically in a standard file list. This is a text file, which the user can save with the "save" option in the menue. From there, the user can simply print it out, load it elswhere, or whatever you do with a list of files and their respective sizes. 
 
+Installers:
+===========
+
+Binary installers currently exist for both Mac OSX and Windows. Simply open up the source directory and go under the correct folder (Windows or Mac OSX). 
+
+On windows, run setup.exe. 
+
+On OSX, open the .dmg and drag the application to the application's directory. 
+
 Donations:
 ==========
 
@@ -36,14 +45,12 @@ That's it.
 To do: 
 ======
 
-Allow the ability to add an entire directory at once. 
-
-Verify multiplatform support, create installers for Ubuntu (.deb) and Mac OSX (.dmg). 
+Create an installer for Ubuntu (.deb)
 
 Supported Operating Systems: 
 ============================
 
-This software has been tested on Microsoft Windows 7 and Ubuntu 12.04 LTS; however, the software should compile on any platform with Qt4 and a C++ compiler. There is a Windows installer located in the directory "Windows". Download BOTH the setup.exe and MyFilesInstall.msi. Ignore the redistribution stuff... I didn't write that. I will not punish you for redistributing this FREE software. Feel free to. In fact, I encourage it. 
+This software has been tested on Microsoft Windows 7, Ubuntu 12.04 LTS and OSX; however, the software should compile on any platform with Qt4 and a C++ compiler. There is a Windows installer located in the directory "Windows". Download BOTH the setup.exe and MyFilesInstall.msi. Ignore the redistribution stuff... I didn't write that. I will not punish you for redistributing this FREE software. Feel free to. In fact, I encourage it. 
 
 Bug Reports:
 ============
