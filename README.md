@@ -12,22 +12,6 @@ On windows, run setup.exe.
 
 On OSX, open the .dmg and drag the application to the application's directory. 
 
-Donations:
-==========
-
-This is free software, but I would much appreciate some small donation if you find it useful. I also appreciate feature requests, 
-so feel free to [email](mailto:hunter.allen@vanderbilt.edu) me at any occassion.
-
-Bitcoin address:
-----------------
-1E5CFqXayhQ9rDzUbyyDRLawmAJHHixoDh
-
-Litecoin address:
------------------
-LRsCWnMnC6RaHhhoeYfG2VgDUkt47aV8H7
-
-Again, any donation is a donation. Note: you are IN NO WAY obligated to pay for this software. 
-
 Dependencies:
 =============
 
@@ -57,4 +41,4 @@ This software has been tested on Microsoft Windows 7, Ubuntu 12.04 LTS and OSX; 
 Bug Reports:
 ============
 
-If you should run into troubles, or you have some feature requests, email me here <hunter.allen@vanderbilt.edu>.
+If you should run into troubles, or you have some feature requests, email me here <allen286@purdue.edu>.
