@@ -18,40 +18,41 @@
 
 FileInfo::FileInfo(QString name, int _size)
 {
-    filename = name;
-    size = _size;
-    toString();
+  filename = name;
+  size = _size;
+  toString();
 
-    getSize = size;
+  getSize = size;
 }//construct a file object
 
 bool FileInfo::compareTo(FileInfo other)
-{ return other.size == this->size && other.filename == this->filename; }
+{return other.size == this->size && other.filename == this->filename;}
 
 void FileInfo::toString()
 {
-    QString FileSize;
-    double file_size = size; //raw size in bytes
-    int divisions = 0;
+  QString FileSize;
+  double file_size = size;   //raw size in bytes
+  int divisions = 0;
 
-    while (file_size > 1024)
-    { file_size /= 1024.0; divisions++; }
+  while (file_size > 1024)
+  {file_size /= 1024.0; divisions++;}
 
-    FileSize.setNum(file_size);
+  FileSize.setNum(file_size);
 
-    if (divisions == 0)
-        FileSize += " Bytes";
-    else if (divisions == 1)
-        FileSize += " KB";
-    else if (divisions == 2)
-        FileSize += " MB";
-    else if (divisions == 3)
-        FileSize += " GB";
-    else if (divisions == 4)
-        FileSize += " TB";
+  if (divisions == 0) {
+    FileSize += " Bytes";
+  } else if (divisions == 1) {
+    FileSize += " KB";
+  } else if (divisions == 2) {
+    FileSize += " MB";
+  } else if (divisions == 3) {
+    FileSize += " GB";
+  } else if (divisions == 4) {
+    FileSize += " TB";
+  }
 
-    QString toReturn;
-    toReturn = filename + ": " + FileSize;
+  QString toReturn;
+  toReturn = filename + ": " + FileSize;
 
-    getString = toReturn;
+  getString = toReturn;
 }//returns the file as a string
