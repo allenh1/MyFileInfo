@@ -14,19 +14,46 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
-#include <QtGui>
+#ifndef FILEINFO_HPP
+#define FILEINFO_HPP
+
+#include <QString>
+#include <QList>
 #include <QFile>
+#include <string.h>
 
-#include <MyFileInfo/MainWindow.h>
-
-int main(int argc, char ** argv)
+class FileInfo
 {
-    QApplication app(argc, argv);
-    MainWindow w(argc,argv);
-    w.show();
-    app.connect(&app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()));
-    //for(;;)
-    //	;
-    //system("pause");
-    return app.exec();
-}
+public:
+  FileInfo(QString name, int _size);
+
+  void toString();
+
+  bool compareTo(FileInfo other);
+
+  QString getString;
+  int getSize;
+
+  bool operator < (const FileInfo & f2) const
+  {
+    FileInfo other = f2;
+    return size < other.getSize;
+  }  //less than operator
+
+  bool operator > (const FileInfo & f2) const
+  {
+    FileInfo other = f2;
+    return size > other.getSize;
+  }  //greater than operator
+
+  bool operator == (const FileInfo & f2) const
+  {
+    FileInfo other = f2;
+    return size == other.getSize;
+  }
+
+private:
+  int size;
+  QString filename;
+};
+#endif

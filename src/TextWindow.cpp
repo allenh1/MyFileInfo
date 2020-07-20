@@ -14,21 +14,36 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
-#include <MyFileInfo/MainWindow.hpp>
+#include <MyFileInfo/TextWindow.hpp>
 
-MainWindow::MainWindow(int argc, char ** argv, QWidget * parent)
+TextWindow::TextWindow()
 {
-  ui.setupUi(this);
+  openAction = new QAction(tr("&Open"), this);
+  openDirectoryAction = new QAction(tr("&Open Folder"), this);
+  saveAction = new QAction(tr("&Save"), this);
+  exitAction = new QAction(tr("E&xit"), this);
 
-  connect(ui.actionOpen_File, SIGNAL(triggered()), this, SLOT(getSize()));
-  connect(ui.actionOpen_Folder, SIGNAL(triggered()), this, SLOT(getDirectory()));
-  connect(ui.actionSave_List, SIGNAL(triggered()), this, SLOT(save()));
-  connect(ui.actionExit, SIGNAL(triggered()), this, SLOT(quit()));
+  connect(openAction, SIGNAL(triggered()), this, SLOT(getSize()));
+  connect(openDirectoryAction, SIGNAL(triggered()), this, SLOT(getDirectory()));
+  connect(saveAction, SIGNAL(triggered()), this, SLOT(save()));
+  connect(exitAction, SIGNAL(triggered()), this, SLOT(quit()));
+
+  fileMenu = menuBar()->addMenu(tr("&File"));
+  fileMenu->addAction(openAction);
+  fileMenu->addAction(openDirectoryAction);
+  fileMenu->addAction(saveAction);
+  fileMenu->addSeparator();
+  fileMenu->addAction(exitAction);
 
   setWindowIcon(QIcon(":/images/icon.xpm"));
+
+  textEdit = new QTextEdit;
+  setCentralWidget(textEdit);
+
+  setWindowTitle(tr("MyFileInfo"));
 }
 
-void MainWindow::quit()
+void TextWindow::quit()
 {
   QMessageBox messageBox;
   messageBox.setWindowTitle(tr("Exit"));
@@ -41,7 +56,7 @@ void MainWindow::quit()
   }
 }//end void
 
-void MainWindow::open()
+void TextWindow::open()
 {
   QString fileName =
     QFileDialog::getOpenFileName(
@@ -56,14 +71,13 @@ void MainWindow::open()
       return;
     }    //end if
 
-
-    //QTextStream in(&file);
-    //textEdit->setText(in.readAll());
+    QTextStream in( & file);
+    textEdit->setText(in.readAll());
     file.close();
   }  //end if
 }//open file dialog
 
-void MainWindow::save()
+void TextWindow::save()
 {
   QString fileName =
     QFileDialog::getSaveFileName(
@@ -77,15 +91,15 @@ void MainWindow::save()
       return;
     }    //end if
     else {
-      QTextStream stream(&file);
-      stream << getList();
+      QTextStream stream( & file);
+      stream << textEdit->toPlainText();
       stream.flush();
       file.close();
     }    //end else
   }  //end if
 }//void for saving the file
 
-QString MainWindow::getList()
+QString TextWindow::getList()
 {
   sortFiles();
   QString output;
@@ -127,65 +141,43 @@ QString MainWindow::getList()
   return output;
 }//returns a string for file output.
 
-void MainWindow::setLabels()
+void TextWindow::sortFiles()
 {
-  QString FileSize;
-  QString numberOfFiles;
-
-  numberOfFiles.setNum(fileList.size() - 1);
-
-  int divisions = 0;
-
-  while (totalSize > 1024)
-  {totalSize /= 1024.0; divisions++;}
-
-  FileSize.setNum(totalSize);
-
-  if (divisions == 0) {
-    FileSize += " Bytes";
-  } else if (divisions == 1) {
-    FileSize += " KB";
-  } else if (divisions == 2) {
-    FileSize += " MB";
-  } else if (divisions == 3) {
-    FileSize += " GB";
-  } else if (divisions == 4) {
-    FileSize += " TB";
-  }
-
-  ui.FileCount->setText(numberOfFiles);
-  ui.TotalSize->setText(FileSize);
-}
-
-void MainWindow::sortFiles()
-{
-  QList<FileInfo> sortedList;
+  QList < FileInfo > sortedList;
   double total = 0;
 
-  qSort(fileList.end(), fileList.begin());
+  while (fileList.size() > 0) {
+    int max = 0; int maxIndex = 0;
 
-  for (int z = 1; z < fileList.size(); z++) {
-    FileInfo toCompare = fileList.at(z - 1);
-    FileInfo toCompareTo = fileList.at(z);
+    for (int x = 0; x < fileList.size(); x++) {
+      int xSize = fileList.at(x).getSize;
+      if (xSize > max)
+      {max = fileList.at(x).getSize; maxIndex = x;}
+    }    //end for x.
 
-    if (toCompareTo.compareTo(toCompare))
-    {fileList.removeAt(z); z--;}
-  }  //remove duplicates.
+    sortedList.push_back(fileList.at(maxIndex));
+    fileList.removeAt(maxIndex);
+  }  //void sorts the file list.
 
-  for (int y = 0; y < fileList.size(); y++) {
-    total += fileList.at(y).getSize;
-  }  //end for x.
-
-  sortedList = fileList;
   fileList.clear();
 
-  for (int z = sortedList.size() - 1; z >= 0; z--) {
-    fileList.push_back(sortedList.at(z));
-  }
+  for (int z = 1; z < sortedList.size(); z++) {
+    FileInfo toCompare = sortedList.at(z - 1);
+    FileInfo toCompareTo = sortedList.at(z);
+
+    if (toCompareTo.compareTo(toCompare))
+    {sortedList.removeAt(z); z--;}
+  }  //remove duplicates.
+
+  for (int y = 0; y < sortedList.size(); y++) {
+    fileList.push_back(sortedList.at(y));
+    total += sortedList.at(y).getSize;
+  }  //end for x.
+
   totalSize = total;
 }//sort the files by size.
 
-void MainWindow::addFile(FileInfo file)
+void TextWindow::addFile(FileInfo file)
 {
   bool madeInsert = false;
 
@@ -203,7 +195,7 @@ void MainWindow::addFile(FileInfo file)
   }
 }//add a file to the sorted list
 
-void MainWindow::getFiles(QString dirName)
+void TextWindow::getFiles(QString dirName)
 {
   QDir currentDir(dirName);
   QStringList list = currentDir.entryList(QDir::Files);
@@ -231,9 +223,10 @@ void MainWindow::getFiles(QString dirName)
   }  //end for x.
 }//add all files from a directory to the list.
 
-void MainWindow::getDirectory()
+void TextWindow::getDirectory()
 {
   QString dirName = QFileDialog::getExistingDirectory(this, tr("Open Dir"));
+  QString output;
   QDir myDir(dirName);
   QStringList list = myDir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
 
@@ -249,20 +242,11 @@ void MainWindow::getDirectory()
     getFiles(fileName);
   }  //end for x.
 
-  //output = getList();
-  //textEdit->setText(output);
-  sortFiles();   //sort before display
-  ui.FileList->clear();
-
-  for (int x = 0; x < fileList.size(); x++) {
-    QString current;
-    current = fileList.at(x).getString;
-    ui.FileList->addItem(current);
-  }  //end for x.
-  setLabels();
+  output = getList();
+  textEdit->setText(output);
 }//add an entire directory.
 
-void MainWindow::getSize()
+void TextWindow::getSize()
 {
   QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "", tr("All Files (*)"));
   currentFile = fileName;
@@ -281,14 +265,7 @@ void MainWindow::getSize()
     QString output;
     output = getList();
 
-    sortFiles();     //sort before display
-    ui.FileList->clear();
-
-    for (int x = 0; x < fileList.size(); x++) {
-      QString current;
-      current = fileList.at(x).getString;
-      ui.FileList->addItem(current);
-    }    //end for x.
+    textEdit->setText(output);
     file.close();
   }  //end if
 }//open file dialog
