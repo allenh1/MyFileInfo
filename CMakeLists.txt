@@ -50,3 +50,8 @@ add_executable(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME}
   PUBLIC Qt5::Widgets Qt5::Gui Qt5::Core
 )
+
+install(
+  TARGETS ${PROJECT_NAME}
+  DESTINATION bin
+)
