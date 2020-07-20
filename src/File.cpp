@@ -14,7 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
-#include <MyFileInfo/File.h>
+#include <MyFileInfo/File.hpp>
 
 FileInfo::FileInfo(QString name, int _size)
 {

@@ -14,8 +14,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef MAINWINDOW_HPP
+#define MAINWINDOW_HPP
+
 #include <QtWidgets>
 #include <QTimer>
 #include <QtAlgorithms>
@@ -24,10 +25,12 @@
 #include <QMessageBox>
 #include <QTextStream>
 
-#include "ui_MainWindow.h"
-#include <MyFileInfo/File.h>
+#include <MyFileInfo/File.hpp>
 
-class MainWindow: public QMainWindow {
+#include "ui_MainWindow.h"
+
+class MainWindow: public QMainWindow
+{
   Q_OBJECT
 
 public:

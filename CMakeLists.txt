@@ -14,9 +14,9 @@ set(CMAKE_AUTORCC ON)
 find_package(Qt5 REQUIRED COMPONENTS Widgets Gui Core)
 
 set(project_headers
-  include/MyFileInfo/TextWindow.h
-  include/MyFileInfo/File.h
-  include/MyFileInfo/MainWindow.h
+  include/MyFileInfo/TextWindow.hpp
+  include/MyFileInfo/File.hpp
+  include/MyFileInfo/MainWindow.hpp
 )
 
 # moc the ui
@@ -31,10 +31,10 @@ endforeach()
 qt5_add_resources(qt_resources resources/icon.qrc)
 
 set(project_sources
-  src/File.cc
-  src/main.cc
+  src/File.cpp
+  src/main.cpp
   src/MainWindow.cpp
-  src/TextWindow.cc
+  src/TextWindow.cpp
 )
 
 include_directories(include ${CMAKE_CURRENT_BINARY_DIR})

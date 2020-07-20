@@ -14,7 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
-#include <MyFileInfo/TextWindow.h>
+#include <MyFileInfo/TextWindow.hpp>
 
 TextWindow::TextWindow()
 {

@@ -17,7 +17,7 @@
 #include <QtGui>
 #include <QFile>
 
-#include <MyFileInfo/MainWindow.h>
+#include <MyFileInfo/MainWindow.hpp>
 
 int main(int argc, char ** argv)
 {
@@ -25,8 +25,5 @@ int main(int argc, char ** argv)
   MainWindow w(argc, argv);
   w.show();
   app.connect(&app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()));
-  //for(;;)
-  //	;
-  //system("pause");
   return app.exec();
 }

@@ -14,7 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
-#include <MyFileInfo/MainWindow.h>
+#include <MyFileInfo/MainWindow.hpp>
 
 MainWindow::MainWindow(int argc, char ** argv, QWidget * parent)
 {

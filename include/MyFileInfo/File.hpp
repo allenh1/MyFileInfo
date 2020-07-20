@@ -14,8 +14,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
-#ifndef FILEINFO_H
-#define FILEINFO_H
+#ifndef FILEINFO_HPP
+#define FILEINFO_HPP
 
 #include <QString>
 #include <QList>

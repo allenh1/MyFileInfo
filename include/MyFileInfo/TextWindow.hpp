@@ -14,11 +14,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
-#ifndef TEXTWINDOW_H
-#define TEXTWINDOW_H
+#ifndef TEXTWINDOW_HPP
+#define TEXTWINDOW_HPP
+
+#include <MyFileInfo/File.hpp>
+
 #include <QtGui>
 #include <QtWidgets>
-#include <MyFileInfo/File.h>
 #include <QList>
 #include <QIcon>
 
